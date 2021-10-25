@@ -1,19 +1,17 @@
 package com.example.Rsupport.contents.model.entity;
 
 import com.example.Rsupport.commons.enmuns.Status;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
 
 @Setter
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Notice {
+public class NoticeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,9 +22,7 @@ public class Notice {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "author_id")
-    private Author author;
+    private String author;
 
     private int hitCount;
 
@@ -40,5 +36,12 @@ public class Notice {
     private LocalDateTime createDate;
     private LocalDateTime modifiedDate;
 
-
+    @Builder
+    public NoticeEntity(String title, String content, String author, LocalDateTime startDate, LocalDateTime endDate) {
+        this.title = title;
+        this.author = author;
+        this.content = content;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 }

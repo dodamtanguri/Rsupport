@@ -1,32 +1,37 @@
 package com.example.Rsupport.contents.model.entity;
 
-import com.example.Rsupport.commons.enmuns.Status;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Entity
 public class NoticeImage {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long noticeImageId;
+    @Column(name = "notice_image_id")
+    private long id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "notice_id")
-    private Notice noticeId;
+    private NoticeEntity noticeId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "file_id")
-    private FileInfo fileInfoId;
+    @Column(nullable = false)
+    private String originalFileName;  // 파일 원본명
 
-    @Column(nullable = false, columnDefinition = "enum('Y','N')")
-    @Enumerated(EnumType.STRING)
-    private Status status = Status.N;
+    @Column(nullable = false)
+    private String saveFileName;  // 저장 파일 이름
 
-    private LocalDateTime createdDate;
+    @Column(nullable = false)
+    private String contentType;
+
+    @Builder
+    public NoticeImage(String originalFileName, String saveFileName, String contentType) {
+        this.originalFileName = originalFileName;
+        this.saveFileName = saveFileName;
+        this.contentType = contentType;
+    }
+
 }
