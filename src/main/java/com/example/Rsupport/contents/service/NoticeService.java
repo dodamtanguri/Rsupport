@@ -9,7 +9,5 @@ import java.util.List;
 
 
 public interface NoticeService {
-
-
     void saveNotice(NoticeReq req, List<MultipartFile> files) throws Exception;
 }

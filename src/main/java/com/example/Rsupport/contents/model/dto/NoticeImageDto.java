@@ -1,5 +1,6 @@
 package com.example.Rsupport.contents.model.dto;
 
+import com.example.Rsupport.contents.model.entity.NoticeImage;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,4 +22,14 @@ public class NoticeImageDto {
         this.saveFileName = saveFileName;
         this.contentType = contentType;
     }
+
+    public NoticeImage toEntity() {
+        return NoticeImage.builder()
+                .noticeId(noticeId)
+                .saveFileName(saveFileName)
+                .originalFileName(originalFileName)
+                .contentType(contentType)
+                .build();
+    }
+
 }

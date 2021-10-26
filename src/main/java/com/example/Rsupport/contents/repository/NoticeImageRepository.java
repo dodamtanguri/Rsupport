@@ -1,10 +1,13 @@
 package com.example.Rsupport.contents.repository;
 
-import com.example.Rsupport.contents.model.dto.NoticeImageDto;
+
 import com.example.Rsupport.contents.model.entity.NoticeImage;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-public interface NoticeImageRepository extends CrudRepository<NoticeImage,Long> {
 
-    void save(NoticeImageDto noticeImage);
+import java.util.Optional;
+
+public interface NoticeImageRepository extends JpaRepository<NoticeImage, Long> {
+
 }
