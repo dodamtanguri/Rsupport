@@ -5,9 +5,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -16,11 +15,11 @@ public class NoticeReq {
     private String title;
     private String author;
     private String content;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @Builder
-    public NoticeReq(String title, String author, String content, LocalDateTime startDate, LocalDateTime endDate) {
+    public NoticeReq(String title, String author, String content, LocalDate startDate, LocalDate endDate) {
         this.title = title;
         this.author = author;
         this.content = content;

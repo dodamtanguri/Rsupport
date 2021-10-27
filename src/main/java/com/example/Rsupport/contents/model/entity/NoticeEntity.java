@@ -4,6 +4,7 @@ import com.example.Rsupport.commons.enmuns.Status;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -26,18 +27,15 @@ public class NoticeEntity {
 
     private int hitCount;
 
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @Column(nullable = false, columnDefinition = "enum('Y','N')")
     @Enumerated(EnumType.STRING)
     private Status status = Status.N;
 
-    private LocalDateTime createDate;
-    private LocalDateTime modifiedDate;
-
     @Builder
-    public NoticeEntity(String title, String content, String author, LocalDateTime startDate, LocalDateTime endDate) {
+    public NoticeEntity(String title, String content, String author, LocalDate startDate, LocalDate endDate) {
         this.title = title;
         this.author = author;
         this.content = content;
